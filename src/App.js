@@ -28,8 +28,6 @@ function App() {
 
   console.log(rooms)
 
-
-
   return (
     <div className="App">
       <Router>
@@ -39,10 +37,10 @@ function App() {
             <Sidebar rooms={rooms} />
             <Switch>
               <Route path="/">
-                <Login />
+                <Chat />
               </Route>
               <Route path="/room">
-                <Chat />
+                <Login />
               </Route>
             </Switch>
           </Main>

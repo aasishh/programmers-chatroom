@@ -52,7 +52,7 @@ const SearchContainer = styled.div`
 const Search = styled.div`
     box-shadow: inset 0 0 0 1px rgb(104 74 104);
     border-radius: 6px;
-    
+    padding-right: 14px;
     input {
         background-color: transparent;
         border: none;
@@ -70,13 +70,13 @@ const Search = styled.div`
 `
 
 const UserContainer = styled.div`
- display: flex;
- align-items: center;
- padding-right: 16px;
- position: absolute;
- right: 0;
-`
-// position: absolute sticks defined container at fixed position while we can make other container relative.
+    display: flex;
+    align-items: center;
+    padding-right: 16px;
+    position: absolute;
+    right: 0;
+    `
+// position: absolute keeps container at fixed position while we can make other container relative.
 
 const Name = styled.div`
     padding-right: 16px;
