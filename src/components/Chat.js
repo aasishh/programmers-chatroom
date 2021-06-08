@@ -25,7 +25,7 @@ function Chat({ user }) {
             })
     }
 
-    const getChannel = () => { //hirerchy of db defined on firestore: collection(rooms)>doc(id)>field(name)
+    const getChannel = () => { //hirerchy of db defined on firestore: collection(rooms)>doc(id)>data(name)
         db.collection('rooms')
             .doc(channelId)
             .onSnapshot((snapshot) => {

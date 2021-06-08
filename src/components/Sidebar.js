@@ -139,6 +139,8 @@ const Channel = styled.div`
     display: flex;
     align-items: center;
     padding-left: 19px;
+    cursor: pointer;
+    
     :hover {
         background: #350D36;
     }
