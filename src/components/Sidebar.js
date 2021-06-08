@@ -4,9 +4,21 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import AddIcon from '@material-ui/icons/Add';
 import { sidebarItems } from '../data/SidebarData';
 import db from '../firebase';
+import { useHistory } from 'react-router-dom';
 
 function Sidebar(props) {
 
+    // using useHistory() method from react router dom to switch different channels 
+    const history = useHistory();
+
+    // function to switch to different channel
+    const goToChannel = (id) => {
+        if (id) {
+            history.push(`/room/${id}`)
+        }
+    }
+
+    // function to add new channels
     const addChannel = () => {
         const newChannel = prompt("Enter Name");
         if (newChannel) {
@@ -41,12 +53,12 @@ function Sidebar(props) {
                     <div>
                         Channels
                     </div>
-                    <AddIcon onClick={addChannel} />
+                    <AddIcon onClick={addChannel} /> {/* same as () => addChannel(), since props is empty*/}
                 </NewChannelContainer>
                 <ChannelsList>
                     {
                         props.rooms.map(item => (
-                            <Channel>
+                            <Channel onClick={() => goToChannel(item.id)}> { /*passing the id that came from firestore to the function to switch to the specific channel for chat details. */}
                                 # {item.name}
                             </Channel>
                         ))
