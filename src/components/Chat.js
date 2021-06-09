@@ -12,7 +12,15 @@ function Chat({ user }) {
     // using useParams() method to get channelId link address define in Route path
     let { channelId } = useParams();
     const [channel, setChannel] = useState();
-    const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useState([]); // messages state should be an array because so that it wont break the map() we run through all the messages.
+
+    const getChannel = () => { //hirerchy of db defined on firestore: collection(rooms)>doc(id)>data(name)
+        db.collection('rooms')
+            .doc(channelId)
+            .onSnapshot((snapshot) => {
+                setChannel(snapshot.data()); // channel state is update with channel name got from firebase and passed down to show channel name dynamically as channel.name 
+            })
+    }
 
     const getMessages = () => {
         db.collection('rooms')
@@ -22,14 +30,6 @@ function Chat({ user }) {
             .onSnapshot((snapshot) => {
                 let messages = snapshot.docs.map((doc) => doc.data());
                 setMessages(messages);
-            })
-    }
-
-    const getChannel = () => { //hirerchy of db defined on firestore: collection(rooms)>doc(id)>data(name)
-        db.collection('rooms')
-            .doc(channelId)
-            .onSnapshot((snapshot) => {
-                setChannel(snapshot.data()); // channel state is update with channel name got from firebase and passed down to show channel name dynamically as channel.name 
             })
     }
 
@@ -56,7 +56,7 @@ function Chat({ user }) {
                 <Channel>
                     <ChannelName>
                         # {channel && channel.name}
-                        {/*using channel && to ensure to load default channel if channel.name from database is not finished loading */}
+                        {/*using channel && to ensure to load default channel if channel.name from database is not finished loading, basically protecting command from other posibilities. Other way is optional chaining: {channel?.name} */}
                     </ChannelName>
                     <ChannelInfo>
                         Ultimate guideline to ace programming
