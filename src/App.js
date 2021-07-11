@@ -12,7 +12,7 @@ import { auth } from './firebase';
 function App() {
 
   const [rooms, setRooms] = useState([]);
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user'))); //getting local stored data from browser by replacing default useState(). this allows to save user info even get page is refreshed
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user'))); //getting local stored data from browser by replacing default useState(). this allows to save user info even if page is refreshed
 
   // on triggred signOut() function will erase user data saved on local storage of browser 
   const signOut = () => {
