@@ -71,12 +71,14 @@ const Container = styled.div`
   width: 100%;
   height: 100vh;
   display: grid;
-  grid-template-rows: 38px minmax(0, 1fr); 
+  grid-template-rows: 60px minmax(0, 1fr); 
+  background: linear-gradient(45deg, rgb(77, 101, 205,1) 0%, rgb(449, 95, 56,1) 100%);
+  
 `
 //grid-template-row will define the area of rows applied under specific div component.
 // minmax is to fix the textbar at the buttom i.e. min space is 0 and max is 1 free space
 
 const Main = styled.div`
-display: grid;
-grid-template-columns: 260px auto;
+  display: grid;
+  grid-template-columns: 300px auto;
 `

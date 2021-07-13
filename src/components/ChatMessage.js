@@ -32,7 +32,7 @@ const Container = styled.div`
 const UserAvator = styled.div`
     width: 36px;
     height: 36px;
-    border-radius: 2px;
+    border-radius: 5px;
     overflow: hidden;
     margin-right: 8px;
 

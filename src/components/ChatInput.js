@@ -37,11 +37,10 @@ function ChatInput({ sendMessage }) {
 export default ChatInput;
 
 const Container = styled.div`
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 24px;
+    padding: 15px 20px;
 `
 const InputContainer = styled.div`
+    background-color: #FFFFFF;
     border: 1px solid #8D8D8E;
     border-radius: 4px;
    
