@@ -65,11 +65,13 @@ const Search = styled.div`
         padding-bottom: 4px;
         color: white;
         width: 100%;
+
+        :focus {
+            outline: none;
+        }
     }
    
-    input: focus {
-        outline: none;
-    }
+    
 `
 
 const UserContainer = styled.div`
