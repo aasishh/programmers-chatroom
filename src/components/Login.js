@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { auth, provider } from '../firebase';
+import logo from '../image/logo.jpeg';
+
 
 function Login(props) {
 
@@ -22,7 +24,7 @@ function Login(props) {
     return (
         <Container>
             <Content>
-                <SlackImage src="https://cdn.dribbble.com/users/4930498/screenshots/10585845/media/798cbdb50e5df19297d4f2a9e75364eb.jpg?compress=1&resize=1600x1200" />
+                <SlackImage src={logo} />
                 <h1>Sign in Programmer's Chatroom</h1>
                 <SigninButton onClick={() => signIn()}>
                     Signin with Google
@@ -37,16 +39,18 @@ export default Login;
 const Container = styled.div`
     width: 100%;
     height: 100vh;
-    background-color: #f8f8f8;
+    background: linear-gradient(45deg, rgb(77, 101, 205,1) 0%, rgb(449, 95, 56,1) 100%);
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 `
 const Content = styled.div`
     background: white;
-    padding: 100px;
+    padding: 4em 8em;
     border-radius: 5px;
-    box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -55,17 +59,32 @@ const Content = styled.div`
     h1 {
         margin-top: 10px;
     }
+
+    :hover{
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    }
 `
 const SlackImage = styled.img`
-    height: 100px;    
+    height: 10em;    
 `
 const SigninButton = styled.button`
     margin-top: 50px;
-    background-color: #0a8d48;
-    color: white;
+    background-image: linear-gradient(to right, #2196f3 0%, #f44336  51%, #2196f3  100%);
+    padding: 18px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 1px 2px 4px #000;
+    border-radius: 10px;
     border: none;
-    height: 40px;
-    border-eadius: 4px;
-    cursor: pointer;
-    font-size: 15px;
+    display: block;
+ 
+
+    :hover {
+        background-position: right center; /* change the direction of the change here */
+        color: #fff;
+        text-decoration: none;
+    }
 `

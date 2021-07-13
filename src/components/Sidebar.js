@@ -71,8 +71,14 @@ function Sidebar(props) {
 
 export default Sidebar;
 
+
 const Container = styled.div`
-background: #3F0E40;
+    background: #181c35;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 0px inset;
+
+    border-radius: 15px;
+    margin: 8px;
+    padding: 6px;
 `
 
 const WorkspaceContainer = styled.div`
@@ -82,7 +88,7 @@ const WorkspaceContainer = styled.div`
     align-items: center;
     padding-left: 19px;
     justify-content: space-between;
-    border-bottom: 1px solid #532753;
+    border-bottom: 1px solid #3E4248;
 `
 
 const Name = styled.div``
@@ -109,25 +115,25 @@ const MainChannelItem = styled.div`
     color: rgb(188, 171,188);
     display: grid;
     grid-template-columns: 15% auto;
-    height: 28px;
+    height: 29px;
     align-items: center;
     padding-left: 19px;
     cursor: pointer;
     :hover {
-        background: #350D36;
+        background: #21253F;
     }
 `
 
 const ChannelsContainer = styled.div`
     color: rgb(188, 171,188);
-    margin-top: 10px;
+    margin-top: 12px;
 `
 
 const NewChannelContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 28px;
+    height: 29px;
     padding-left: 19px;
     padding-right: 12px;
 `
@@ -135,13 +141,13 @@ const NewChannelContainer = styled.div`
 const ChannelsList = styled.div``
 
 const Channel = styled.div`
-    height: 28px;
+    height: 29px;
     display: flex;
     align-items: center;
     padding-left: 19px;
     cursor: pointer;
     
     :hover {
-        background: #350D36;
+        background: #21253F;
     }
 `
