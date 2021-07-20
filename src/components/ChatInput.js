@@ -54,10 +54,10 @@ const InputContainer = styled.div`
            flex: 1;
            border: none;
            font-size: 13px;
-        }
 
-        input: focus {
-            outline: none; 
+           :focus {
+                outline: none; 
+            }
         }
     }
 `

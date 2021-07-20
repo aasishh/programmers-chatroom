@@ -2,15 +2,21 @@ import React from 'react';
 import styled from 'styled-components';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
+import SearchIcon from '@material-ui/icons/Search';
+import logo from '../image/logo-nobg.png';
 
 function Header({ user, signOut }) {
     return (
         <Container>
+            <LogoContainer>
+                <Logo src={logo} />
+            </LogoContainer>
             <Main>
                 <AccessTimeIcon />
                 <SearchContainer>
                     <Search>
-                        <input type="text" alt="Search"></input>
+                        <SearchIcon />
+                        <input type="text" placeholder="Search here ..." alt="Search"></input>
                     </Search>
                 </SearchContainer>
                 <HelpOutlineIcon />
@@ -35,56 +41,76 @@ const Container = styled.div`
 
     color: white;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: center;  
     position: relative;
     border-radius: 15px;
-    margin: 10px 8px 4px 8px;
+    margin: 0.625rem 0.5rem 0.25rem 0.5rem;
+`
+
+const LogoContainer = styled.div`
+    display: flex;
+    flex: 0.25;
+`
+
+const Logo = styled.img`
+    padding-left: 0.8em;
+    width: 6.25rem;
+    height: auto;
 `
 
 const Main = styled.div`
     display: flex;
+    flex: 0.5;
+    justify-content: center;
+    overflow: hidden;
 `
 
 const SearchContainer = styled.div`
-    min-width: 400px;
-    margin-left: 16px;
-    margin-right: 16px;
+    width: 25rem;
+    min-width: 6.25rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
 `
 
 const Search = styled.div`
+    display: flex;
+    align-items: center;
+    color: gray;
+    height: 1.65rem;
     box-shadow: inset 0 0 0 1px rgb(104 74 104);
-    border-radius: 6px;
-    padding-right: 14px;
+    border-radius: 12px;
+    padding: 0 0.625em 0 0.625rem;
     input {
         background-color: transparent;
         border: none;
-        padding-left: 8px;
-        padding-right: 8px;
-        padding-top: 4px;
-        padding-bottom: 4px;
+        padding: 0.25em 0.5em 0.25em 0.5em;
         color: white;
         width: 100%;
+        font-size: 0.8125rem;
 
         :focus {
             outline: none;
         }
     }
-   
+    
+    .MuiSvgIcon-root {
+        height: 1.125rem;
+    }
     
 `
 
 const UserContainer = styled.div`
     display: flex;
+    flex: 0.25;
     align-items: center;
-    padding-right: 20px;
+    padding-right: 1.25em;
     position: absolute;
     right: 0;
     `
 // position: absolute keeps container at fixed position while we can make other container relative.
 
 const Name = styled.div`
-    padding-right: 16px;
+    padding-right: 1em;
 `
 
 const UserImage = styled.div`
