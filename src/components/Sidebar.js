@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import AddIcon from '@material-ui/icons/Add';
+import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import { sidebarItems } from '../data/SidebarData';
 import db from '../firebase';
 import { useHistory } from 'react-router-dom';
@@ -32,7 +33,13 @@ function Sidebar(props) {
         <Container>
             <WorkspaceContainer>
                 <Name>
-                    Progammer's Chat Room
+                    <h2>
+                        Programmer's Chat Room
+                    </h2>
+                    <h3>
+                        <FiberManualRecordIcon />
+                        {props.user.name}
+                    </h3>
                 </Name>
                 <NewMessage>
                     <AddCircleOutlineIcon />
@@ -91,7 +98,30 @@ const WorkspaceContainer = styled.div`
     border-bottom: 1px solid #3E4248;
 `
 
-const Name = styled.div``
+const Name = styled.div`
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+        font-size: 15px;
+        font-weight: 900;
+        margin-bottom: 5px;
+    }
+
+    h3 {
+        display: flex;
+        align-items: center;
+        font-size: 13px;
+        font-weight: 400;
+
+        .MuiSvgIcon-root {
+            font-size: 14px;
+            margin-right: 2px;
+            margin-top: 1px;
+            color: green;
+        }
+    }
+`
 
 const NewMessage = styled.div`
     width: 36px;
@@ -121,6 +151,7 @@ const MainChannelItem = styled.div`
     cursor: pointer;
     :hover {
         background: #21253F;
+        opacity: 0.9;
     }
 `
 
