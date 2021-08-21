@@ -91,4 +91,5 @@ const InitialText = styled.div`
   background: #e8e9ed;
   border-radius: 15px;
   margin: 8px;
+  
 `

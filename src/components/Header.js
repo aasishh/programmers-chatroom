@@ -3,11 +3,15 @@ import styled from 'styled-components';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import SearchIcon from '@material-ui/icons/Search';
+import VerticalSplitIcon from '@material-ui/icons/VerticalSplit';
 import logo from '../image/logo-nobg.png';
 
 function Header({ user, signOut }) {
     return (
         <Container>
+            <MobileMenuIcon>
+                <VerticalSplitIcon />
+            </MobileMenuIcon>
             <LogoContainer>
                 <Logo src={logo} />
             </LogoContainer>
@@ -45,6 +49,19 @@ const Container = styled.div`
     position: relative;
     border-radius: 15px;
     margin: 0.625rem 0.5rem 0.25rem 0.5rem;
+
+`
+
+const MobileMenuIcon = styled.div`
+
+    display: none;
+    
+    @media screen and (max-width: 760px) {    
+        display: flex;
+        left: 0;
+        top: 0;
+        cursor: pointer;
+    }
 `
 
 const LogoContainer = styled.div`
@@ -60,9 +77,11 @@ const Logo = styled.img`
 
 const Main = styled.div`
     display: flex;
-    flex: 0.5;
+    flex-grow: 0.5;
     justify-content: center;
     overflow: hidden;
+
+    
 `
 
 const SearchContainer = styled.div`
@@ -106,11 +125,19 @@ const UserContainer = styled.div`
     padding-right: 1.25em;
     position: absolute;
     right: 0;
-    `
+
+    @media screen and (max-width: 760px) {
+        flex: 2;
+    }
+`
 // position: absolute keeps container at fixed position while we can make other container relative.
 
 const Name = styled.div`
     padding-right: 1em;
+
+    @media screen and (max-width: 760px) {
+        display: none;
+    }
 `
 
 const UserImage = styled.div`
