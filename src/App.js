@@ -54,7 +54,9 @@ function App() {
                     <Chat user={user} />
                   </Route>
                   <Route path="/">
-                    Select or Create Channel
+                    <InitialText>
+                      Please select or create new channel
+                    </InitialText>
                   </Route>
                 </Switch>
               </Main>
@@ -81,4 +83,12 @@ const Container = styled.div`
 const Main = styled.div`
   display: grid;
   grid-template-columns: 300px auto;
+`
+
+const InitialText = styled.div`
+  display: grid;
+  place-items: center;
+  background: #e8e9ed;
+  border-radius: 15px;
+  margin: 8px;
 `

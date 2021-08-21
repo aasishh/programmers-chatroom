@@ -77,7 +77,7 @@ const Search = styled.div`
     align-items: center;
     color: gray;
     height: 1.65rem;
-    box-shadow: inset 0 0 0 1px rgb(104 74 104);
+    box-shadow: inset 0 0 0 1.3px rgb(104 74 104);
     border-radius: 12px;
     padding: 0 0.625em 0 0.625rem;
     input {
