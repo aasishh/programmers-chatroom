@@ -48,17 +48,21 @@ function App() {
             <Container>
               <Header user={user} signOut={signOut} />
               <Main>
-                <Sidebar rooms={rooms} user={user}/>
-                <Switch>
-                  <Route path="/room/:channelId">
-                    <Chat user={user} />
-                  </Route>
-                  <Route path="/">
-                    <InitialText>
-                      Please select or create new channel
-                    </InitialText>
-                  </Route>
-                </Switch>
+                <SidebarWrapper>
+                  <Sidebar rooms={rooms} user={user}/>
+                </SidebarWrapper>
+                <MainContent>
+                  <Switch>
+                    <Route path="/room/:channelId">
+                      <Chat user={user} />
+                    </Route>
+                    <Route path="/">
+                      <InitialText>
+                        Please select or create new channel
+                      </InitialText>
+                    </Route>
+                  </Switch>
+                </MainContent>
               </Main>
             </Container>
         }
@@ -80,9 +84,22 @@ const Container = styled.div`
 //grid-template-row will define the area of rows applied under specific div component.
 // minmax is to fix the textbar at the buttom i.e. min space is 0 and max is 1 free space
 
+
 const Main = styled.div`
-  display: grid;
-  grid-template-columns: 300px auto;
+  display: flex;
+`
+
+const SidebarWrapper = styled.div`
+  display: flex;
+  
+  @media screen and (max-width: 760px) {
+    display: none;
+  }
+`
+
+const MainContent = styled.div`
+  display: flex;
+  flex: auto;
 `
 
 const InitialText = styled.div`
