@@ -103,8 +103,10 @@ const MainContent = styled.div`
 `
 
 const InitialText = styled.div`
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex: auto;
+  justify-content: center;
+  align-items: center;
   background: #e8e9ed;
   border-radius: 15px;
   margin: 8px;

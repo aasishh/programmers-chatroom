@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom';
 
 function Sidebar(props) {
 
-    // using useHistory() method from react router dom to switch different channels 
+    // using useHistory() method from react router dom to switch different channels programatically (like going bak or forward in the browser)
     const history = useHistory();
 
     // function to switch to different channel
@@ -18,10 +18,13 @@ function Sidebar(props) {
             history.push(`/room/${id}`)
         }
     }
-
+    // let channelArray = props.rooms.filter(i => (i.name));
+    // console.log(channelArray);
     // function to add new channels
     const addChannel = () => {
+        
         const newChannel = prompt("Enter Name");
+        // if (newChannel !== channelArray.includes(newChannel)) {
         if (newChannel) {
             db.collection('rooms').add({
                 name: newChannel
@@ -169,7 +172,9 @@ const NewChannelContainer = styled.div`
     padding-right: 12px;
 `
 
-const ChannelsList = styled.div``
+const ChannelsList = styled.div`
+
+`
 
 const Channel = styled.div`
     height: 29px;

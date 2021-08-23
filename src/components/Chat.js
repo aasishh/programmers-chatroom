@@ -11,6 +11,7 @@ function Chat({ user }) {
 
     // using useParams() method to get channelId link address define in Route path
     let { channelId } = useParams();
+    
     const [channel, setChannel] = useState();
     const [messages, setMessages] = useState([]);
 
@@ -111,6 +112,7 @@ const Channel = styled.div`
 `
 const ChannelName = styled.div`
     font-weight: 700;
+    text-transform: lowercase;
 `
 const ChannelInfo = styled.div`
     font-weight: 400;
