@@ -21,8 +21,7 @@ function Sidebar(props) {
     // let channelArray = props.rooms.filter(i => (i.name));
     // console.log(channelArray);
     // function to add new channels
-    const addChannel = () => {
-        
+    const addChannel = () => {  
         const newChannel = prompt("Enter Name");
         // if (newChannel !== channelArray.includes(newChannel)) {
         if (newChannel) {
@@ -89,6 +88,10 @@ const Container = styled.div`
     margin: 8px;
     padding: 6px;
     width: 265px;
+
+    @media screen and (max-width: 760px) {
+        margin: 0px;
+    }
 `
 
 const WorkspaceContainer = styled.div`
@@ -119,7 +122,7 @@ const Name = styled.div`
 
         .MuiSvgIcon-root {
             font-size: 14px;
-            margin-right: 2px;
+            margin-right: 3px;
             margin-top: 1px;
             color: green;
         }
@@ -148,10 +151,11 @@ const MainChannelItem = styled.div`
     color: rgb(188, 171,188);
     display: grid;
     grid-template-columns: 15% auto;
-    height: 29px;
+    height: 32px;
     align-items: center;
     padding-left: 19px;
     cursor: pointer;
+    
     :hover {
         background: #21253F;
         opacity: 0.9;
@@ -168,8 +172,10 @@ const NewChannelContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     height: 29px;
-    padding-left: 19px;
-    padding-right: 12px;
+    padding: 8px 12px 8px 19px;
+    margin: 12px 0px 12px 0px;
+    border-top: 1px solid #3E4248;
+    border-bottom: 1px solid #3E4248;
 `
 
 const ChannelsList = styled.div`

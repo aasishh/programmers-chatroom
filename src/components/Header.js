@@ -6,11 +6,11 @@ import SearchIcon from '@material-ui/icons/Search';
 import VerticalSplitIcon from '@material-ui/icons/VerticalSplit';
 import logo from '../image/logo-nobg.png';
 
-function Header({ user, signOut }) {
+function Header({ user, signOut, toggleSidebar }) {
     return (
         <Container>
             <LogoContainer>
-                <MobileMenuIcon>
+                <MobileMenuIcon onClick={toggleSidebar}>
                     <VerticalSplitIcon />
                 </MobileMenuIcon>          
                 <Logo src={logo} />

@@ -13,6 +13,12 @@ function App() {
 
   const [rooms, setRooms] = useState([]);
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user'))); //getting local stored data from browser by replacing default useState(). this allows to save user info even get page is refreshed
+  
+  const [isMobileClicked, setIsMobileClicked] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsMobileClicked(!isMobileClicked);
+  }
 
   // on triggred signOut() function will erase user data saved on local storage of browser 
   const signOut = () => {
@@ -46,15 +52,15 @@ function App() {
             <Login setUser={setUser} />
             :
             <Container>
-              <Header user={user} signOut={signOut} />
+              <Header user={user} signOut={signOut} toggleSidebar={toggleSidebar} />
               <Main>
                 <SidebarWrapper>
-                  <Sidebar rooms={rooms} user={user}/>
+                  <Sidebar rooms={rooms} user={user} />
                 </SidebarWrapper>
                 <MainContent>
                   <Switch>
                     <Route path="/room/:channelId">
-                      <Chat user={user} />
+                      <Chat user={user} rooms={rooms} isMobileClicked={isMobileClicked} setIsMobileClicked={setIsMobileClicked} Sidebar={Sidebar} />
                     </Route>
                     <Route path="/">
                       <InitialText>
@@ -79,7 +85,7 @@ const Container = styled.div`
   display: grid;
   grid-template-rows: 60px minmax(0, 1fr); 
   background: linear-gradient(45deg, rgb(77, 101, 205,1) 0%, rgb(449, 95, 56,1) 100%);
-  
+  overflow: hidden;
 `
 //grid-template-row will define the area of rows applied under specific div component.
 // minmax is to fix the textbar at the buttom i.e. min space is 0 and max is 1 free space

@@ -7,8 +7,8 @@ import db from '../firebase';
 import { useParams } from 'react-router-dom';
 import firebase from 'firebase';
 
-function Chat({ user }) {
-
+function Chat({ user, rooms, isMobileClicked, setIsMobileClicked, Sidebar }) {
+    
     // using useParams() method to get channelId link address define in Route path
     let { channelId } = useParams();
     
@@ -51,38 +51,48 @@ function Chat({ user }) {
         getMessages();
     }, [channelId]) // whenever channelId value changes it triggers useEffect() hook to run
 
+
+    const updateMobileClickedOnChat = () => {
+        setIsMobileClicked(false);
+    }
+
     return (
         <Container>
-            <Header>
-                <Channel>
-                    <ChannelName>
-                        # {channel && channel.name}
-                        {/*using channel && to ensure to load default channel if channel.name from database is not finished loading */}
-                    </ChannelName>
-                    <ChannelInfo>
-                        Ultimate guideline to ace programming
-                    </ChannelInfo>
-                </Channel>
-                <ChannelDetails>
-                    <div>
-                        Details
-                    </div>
-                    <Info />
-                </ChannelDetails>
-            </Header>
-            <MessageContainer>
-                {
-                    messages.length > 0 && messages.map((data, index) => (
-                        <ChatMessage
-                            text={data.text}
-                            name={data.user}
-                            image={data.userImage}
-                            timestamp={data.timestamp}
-                        />
-                    ))
-                }
-            </MessageContainer>
-            <ChatInput sendMessage={sendMessage} />
+            <MobileSidebar isMobileClicked={isMobileClicked}>
+                <Sidebar user={user} rooms={rooms} />
+            </MobileSidebar>
+            <ChatContent onClick={updateMobileClickedOnChat}>
+                <Header>
+                    <Channel>
+                        <ChannelName>
+                            # {channel && channel.name}
+                            {/*using channel && to ensure to load default channel if channel.name from database is not finished loading */}
+                        </ChannelName>
+                        <ChannelInfo>
+                            Ultimate guideline to ace programming
+                        </ChannelInfo>
+                    </Channel>
+                    <ChannelDetails>
+                        <div>
+                            Details
+                        </div>
+                        <Info />
+                    </ChannelDetails>
+                </Header>
+                <MessageContainer>
+                    {
+                        messages.length > 0 && messages.map((data, index) => (
+                            <ChatMessage
+                                text={data.text}
+                                name={data.user}
+                                image={data.userImage}
+                                timestamp={data.timestamp}
+                            />
+                        ))
+                    }
+                </MessageContainer>
+                <ChatInput sendMessage={sendMessage} />
+            </ChatContent>          
         </Container>
     )
 }
@@ -90,8 +100,7 @@ function Chat({ user }) {
 export default Chat;
 
 const Container = styled.div`
-    display: grid;
-    grid-template-rows: 64px auto min-content;
+    position: relative;
     min-height: 0;
     background: #e8e9ed;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 0px inset;
@@ -99,6 +108,30 @@ const Container = styled.div`
     margin: 8px;
     width: 100%;
 `
+const MobileSidebar = styled.aside`
+    display: none;
+
+    @media screen and (max-width: 760px) {
+        position: absolute;
+        transition: 0.25s ease-in-out;
+        opacity: ${({ isMobileClicked }) => ( isMobileClicked ? '0.985' : '0' )};
+        left: ${({ isMobileClicked }) => ( isMobileClicked ? '0' : '-100%')};
+        top: 0;
+        width: 269px;
+        height: 100%;
+        display: flex;
+        overflow: hidden;
+    }
+    
+    
+`
+
+const ChatContent = styled.div`
+    display: grid;
+    grid-template-rows: 64px auto min-content;
+    height: 100%;
+`
+
 const Header = styled.div`
     padding-left: 20px;
     padding-right: 20px;
