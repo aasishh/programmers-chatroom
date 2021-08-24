@@ -44,6 +44,10 @@ function App() {
     getChannels();
   }, [])
 
+  const updateMobileClickedOnChat = () => {
+    setIsMobileClicked(false);
+  }
+
   return (
     <div className="App">
       <Router>
@@ -53,21 +57,26 @@ function App() {
             :
             <Container>
               <Header user={user} signOut={signOut} toggleSidebar={toggleSidebar} />
-              <Main>
+              <Main onClick={updateMobileClickedOnChat}>
                 <SidebarWrapper>
                   <Sidebar rooms={rooms} user={user} />
                 </SidebarWrapper>
-                <MainContent>
-                  <Switch>
-                    <Route path="/room/:channelId">
-                      <Chat user={user} rooms={rooms} isMobileClicked={isMobileClicked} setIsMobileClicked={setIsMobileClicked} Sidebar={Sidebar} />
-                    </Route>
-                    <Route path="/">
-                      <InitialText>
-                        Please select or create new channel
-                      </InitialText>
-                    </Route>
-                  </Switch>
+                <MainContent isMobileClicked={isMobileClicked} setIsMobileClicked={setIsMobileClicked}>
+                  <MobileSidebar isMobileClicked={isMobileClicked}>
+                    <Sidebar user={user} rooms={rooms} />
+                  </MobileSidebar>
+                  <ChatContentContainer >
+                    <Switch>
+                      <Route path="/room/:channelId">
+                        <Chat user={user} rooms={rooms}/>
+                      </Route>
+                      <Route path="/">
+                        <InitialText>                        
+                          Please select or create new channel
+                        </InitialText>
+                      </Route>
+                    </Switch>
+                  </ChatContentContainer>                 
                 </MainContent>
               </Main>
             </Container>
@@ -104,6 +113,30 @@ const SidebarWrapper = styled.div`
 `
 
 const MainContent = styled.div`
+  position: relative;
+  display: flex;
+  flex: auto;
+  margin: 8px;
+`
+
+const MobileSidebar = styled.aside`
+    display: none;
+
+    @media screen and (max-width: 760px) {
+      position: absolute;
+      transition: 0.25s ease-in-out;
+      opacity: ${({ isMobileClicked }) => ( isMobileClicked ? '0.985' : '0' )};
+      left: ${({ isMobileClicked }) => ( isMobileClicked ? '0' : '-100%')};
+      top: 0;
+      width: 269px;
+      height: 100%;
+      display: flex;
+      z-index: 999;
+      overflow: hidden;
+    } 
+`
+
+const ChatContentContainer = styled.div`
   display: flex;
   flex: auto;
 `
@@ -115,6 +148,6 @@ const InitialText = styled.div`
   align-items: center;
   background: #e8e9ed;
   border-radius: 15px;
-  margin: 8px;
+  
   
 `

@@ -7,7 +7,7 @@ import db from '../firebase';
 import { useParams } from 'react-router-dom';
 import firebase from 'firebase';
 
-function Chat({ user, rooms, isMobileClicked, setIsMobileClicked, Sidebar }) {
+function Chat({ user, rooms }) {
     
     // using useParams() method to get channelId link address define in Route path
     let { channelId } = useParams();
@@ -51,17 +51,9 @@ function Chat({ user, rooms, isMobileClicked, setIsMobileClicked, Sidebar }) {
         getMessages();
     }, [channelId]) // whenever channelId value changes it triggers useEffect() hook to run
 
-
-    const updateMobileClickedOnChat = () => {
-        setIsMobileClicked(false);
-    }
-
     return (
         <Container>
-            <MobileSidebar isMobileClicked={isMobileClicked}>
-                <Sidebar user={user} rooms={rooms} />
-            </MobileSidebar>
-            <ChatContent onClick={updateMobileClickedOnChat}>
+            <ChatContent>
                 <Header>
                     <Channel>
                         <ChannelName>
@@ -105,25 +97,7 @@ const Container = styled.div`
     background: #e8e9ed;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 0px inset;
     border-radius: 15px;
-    margin: 8px;
     width: 100%;
-`
-const MobileSidebar = styled.aside`
-    display: none;
-
-    @media screen and (max-width: 760px) {
-        position: absolute;
-        transition: 0.25s ease-in-out;
-        opacity: ${({ isMobileClicked }) => ( isMobileClicked ? '0.985' : '0' )};
-        left: ${({ isMobileClicked }) => ( isMobileClicked ? '0' : '-100%')};
-        top: 0;
-        width: 269px;
-        height: 100%;
-        display: flex;
-        overflow: hidden;
-    }
-    
-    
 `
 
 const ChatContent = styled.div`
