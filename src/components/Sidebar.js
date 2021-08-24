@@ -88,9 +88,17 @@ const Container = styled.div`
     margin: 8px;
     padding: 6px;
     width: 265px;
-
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;   /* Firefox */
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    
     @media screen and (max-width: 760px) {
         margin: 0px;
+        overflow-y: scroll;
     }
 `
 
