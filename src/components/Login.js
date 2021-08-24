@@ -37,17 +37,19 @@ function Login(props) {
 export default Login;
 
 const Container = styled.div`
-    width: 100%;
-    height: 100vh;
-    background: linear-gradient(45deg, rgb(77, 101, 205,1) 0%, rgb(449, 95, 56,1) 100%);
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(45deg, rgb(77, 101, 205,1) 0%, rgb(449, 95, 56,1) 100%);
     overflow: hidden;
 `
 const Content = styled.div`
+    width: 35%;
+    height: min-content;
     background: white;
-    padding: 4em 8em;
+    padding: 1em 4em 3em 4em;
     border-radius: 5px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
@@ -55,22 +57,40 @@ const Content = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 
     h1 {
-        margin-top: 10px;
+        margin-top: 0.625rem;
+        text-align: center;
+        font-size: 2rem;
     }
 
     :hover{
         box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
     }
+
+    @media screen and (max-width: 992px) {
+        padding: 1em 3em 2.5em 3em;
+        h1 {
+            font-size: 1.5rem;
+        }
+    }
+    
 `
 const SlackImage = styled.img`
-    height: 10em;    
+    height: 8em;
+    @media screen and (max-width: 992px) {
+        height: 6em;
+    }
+    @media screen and (max-width: 420px) {
+        height: 4.8em;
+    }    
 `
 const SigninButton = styled.button`
-    margin-top: 50px;
+    margin-top: 2.5rem;
     background-image: linear-gradient(to right, #2196f3 0%, #f44336  51%, #2196f3  100%);
-    padding: 18px 45px;
+    padding: 1.125em 2.2em;
+    font-size: 0.8rem;
     text-align: center;
     text-transform: uppercase;
     transition: 0.5s;
@@ -86,5 +106,16 @@ const SigninButton = styled.button`
         background-position: right center; /* change the direction of the change here */
         color: #fff;
         text-decoration: none;
+    }
+
+    @media screen and (max-width: 992px) {
+        font-size: 0.6rem;
+        margin-top: 2rem;
+        border-radius: 6px;
+    }
+
+    @media screen and (max-width: 420px) {
+        font-size: 0.45rem;
+        border-radius: 4px;
     }
 `
