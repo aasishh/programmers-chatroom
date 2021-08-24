@@ -57,15 +57,15 @@ function App() {
             :
             <Container>
               <Header user={user} signOut={signOut} toggleSidebar={toggleSidebar} />
-              <Main onClick={updateMobileClickedOnChat}>
+              <Main>
                 <SidebarWrapper>
                   <Sidebar rooms={rooms} user={user} />
                 </SidebarWrapper>
-                <MainContent isMobileClicked={isMobileClicked} setIsMobileClicked={setIsMobileClicked}>
+                <MainContent>
                   <MobileSidebar isMobileClicked={isMobileClicked}>
-                    <Sidebar user={user} rooms={rooms} />
+                    <Sidebar user={user} rooms={rooms} updateMobileClickedOnChat={updateMobileClickedOnChat}/>
                   </MobileSidebar>
-                  <ChatContentContainer >
+                  <ChatContentContainer onClick={updateMobileClickedOnChat}>
                     <Switch>
                       <Route path="/room/:channelId">
                         <Chat user={user} rooms={rooms}/>

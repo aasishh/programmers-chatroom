@@ -64,7 +64,7 @@ function Sidebar(props) {
                     </div>
                     <AddIcon onClick={addChannel} /> {/* same as () => addChannel(), since props is empty*/}
                 </NewChannelContainer>
-                <ChannelsList>
+                <ChannelsList onClick={props.updateMobileClickedOnChat}>
                     {
                         props.rooms.map(item => (
                             <Channel onClick={() => goToChannel(item.id)}> { /*passing the id that came from firestore to the function to switch to the specific channel for chat details. */}
