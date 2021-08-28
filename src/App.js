@@ -65,6 +65,7 @@ function App() {
                   <MobileSidebar isMobileClicked={isMobileClicked}>
                     <Sidebar user={user} rooms={rooms} updateMobileClickedOnChat={updateMobileClickedOnChat}/>
                   </MobileSidebar>
+                  <MobileSidebarBackground isMobileClicked={isMobileClicked} />
                   <ChatContentContainer onClick={updateMobileClickedOnChat}>
                     <Switch>
                       <Route path="/room/:channelId">
@@ -119,6 +120,22 @@ const MainContent = styled.div`
   margin: 8px;
 `
 
+const MobileSidebarBackground = styled.aside`
+  display: none;
+
+  @media screen and (max-width: 760px) {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: 0.25s ease-in-out;
+    background: black;
+    opacity: ${({ isMobileClicked }) => ( isMobileClicked ? '0.3' : '0' )};
+    z-index: 100;
+    border-radius: 15px;
+  }
+`
+
 const MobileSidebar = styled.aside`
     display: none;
 
@@ -128,6 +145,8 @@ const MobileSidebar = styled.aside`
       opacity: ${({ isMobileClicked }) => ( isMobileClicked ? '0.985' : '0' )};
       left: ${({ isMobileClicked }) => ( isMobileClicked ? '0' : '-100%')};
       top: 0;
+      border-radius: 15px;
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
       width: 269px;
       height: 100%;
       display: flex;
