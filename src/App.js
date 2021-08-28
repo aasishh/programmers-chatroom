@@ -65,8 +65,8 @@ function App() {
                   <MobileSidebar isMobileClicked={isMobileClicked}>
                     <Sidebar user={user} rooms={rooms} updateMobileClickedOnChat={updateMobileClickedOnChat}/>
                   </MobileSidebar>
-                  <MobileSidebarBackground isMobileClicked={isMobileClicked} />
-                  <ChatContentContainer onClick={updateMobileClickedOnChat}>
+                  <MobileSidebarBackground isMobileClicked={isMobileClicked} onClick={updateMobileClickedOnChat} />
+                  <ChatContentContainer >
                     <Switch>
                       <Route path="/room/:channelId">
                         <Chat user={user} rooms={rooms}/>
