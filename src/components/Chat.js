@@ -15,6 +15,19 @@ function Chat({ user, rooms }) {
     const [channel, setChannel] = useState();
     const [messages, setMessages] = useState([]);
 
+    // let filteringChannel = rooms.filter(value => (channelId === value.id ? value : false))
+   
+    // console.log("this is it",filteringChannel)
+    // for (let item of rooms) {
+    //     if (item.id === channelId){
+    //     console.log(item.id)
+    //     console.log(item.name)}
+    //   }
+
+    
+
+    
+
     const getMessages = () => {
         db.collection('rooms')
             .doc(channelId)
@@ -57,7 +70,7 @@ function Chat({ user, rooms }) {
                 <Header>
                     <Channel>
                         <ChannelName>
-                            # {channel && channel.name}
+                            # {channel && channel.name}  {/*other way is: channel?.name ,using optional chaining */}
                             {/*using channel && to ensure to load default channel if channel.name from database is not finished loading */}
                         </ChannelName>
                         <ChannelInfo>

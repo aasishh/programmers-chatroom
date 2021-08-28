@@ -18,12 +18,36 @@ function Sidebar(props) {
             history.push(`/room/${id}`)
         }
     }
-    // let channelArray = props.rooms.filter(i => (i.name));
-    // console.log(channelArray);
+    
+    // const addChannel = () => {
+    //     const newChannel = prompt("Please enter new channel name");
+    //     function checkChannel (rooms, newChannel) {   
+    //         for (let item in rooms) {
+    //         if (item.id !== newChannel) {
+    //             return  {
+    //                         if (newChannel) {
+    //                             db.collection('rooms').add({
+    //                                 name: newChannel
+    //                             })
+    //                         }
+    //                     }
+    //         }
+    //         }
+    //         return alert("The channel you entred already exist. Please choose another name")
+    //     }
+    //     checkChannel(newChannel)
+    // }
+    
     // function to add new channels
     const addChannel = () => {  
-        const newChannel = prompt("Enter Name");
-        // if (newChannel !== channelArray.includes(newChannel)) {
+        const newChannel = prompt("Please enter new channel name");
+        // for (let item of props.rooms) {
+        //     if (newChannel && item.name !== newChannel) { 
+        //         console.log(newChannel)    
+        //     } 
+        //     return alert("The channel you entred already exist. Please choose another name")
+        // }
+            
         if (newChannel) {
             db.collection('rooms').add({
                 name: newChannel

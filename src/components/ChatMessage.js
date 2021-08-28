@@ -10,7 +10,7 @@ function ChatMessage({ text, name, image, timestamp }) {
             <MessageContent>
                 <Name>
                     {name}
-                    <span>{new Date(timestamp.toDate()).toUTCString()}</span>
+                    <span>{new Date(timestamp?.toDate()).toUTCString()}</span>
                     {/* .toDate() converts timestamp object as date object and .toUTCString() converts object to string */}
                 </Name>
                 <Text>
@@ -25,19 +25,26 @@ export default ChatMessage;
 
 
 const Container = styled.div`
-    padding:8px 20px;
+    padding: 8px 20px;
     display: flex;
     align-items: center;
 `
 const UserAvator = styled.div`
     width: 36px;
     height: 36px;
-    border-radius: 5px;
-    overflow: hidden;
     margin-right: 8px;
+    overflow: hidden;
+    
 
     img {
         width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+
+    @media screen and (max-width: 420px) {
+        width: 46px;
+        height: 46px;
     }
 `
 // border radius of div is 2px. in order to apply it to the image inside div, we define overflow = hidden

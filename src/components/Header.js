@@ -167,7 +167,7 @@ const UserImage = styled.div`
     height: 28px;
     border: 2px solid white;
     border-radius: 3px;
-    
+    cursor: pointer;
     img {
         width: 100%;
     }
