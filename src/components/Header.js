@@ -5,8 +5,12 @@ import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import SearchIcon from '@material-ui/icons/Search';
 import VerticalSplitIcon from '@material-ui/icons/VerticalSplit';
 import logo from '../image/logo-nobg.png';
+import { useStateValue } from '../StateProvider';
 
-function Header({ user, signOut, toggleSidebar }) {
+function Header({ signOut, toggleSidebar }) {
+
+    const [{user}] = useStateValue();
+
     return (
         <Container>
             <LogoContainer>
@@ -27,7 +31,7 @@ function Header({ user, signOut, toggleSidebar }) {
             </Main>
             <UserContainer>
                 <Name>
-                    {user.name}
+                    {user?.name}
                 </Name>
                 <UserImage onClick={signOut}>
                     <img src={user.photo ? user.photo : "https://i.imgur.com/6VBx3io.png"} alt="" />

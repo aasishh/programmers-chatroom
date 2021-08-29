@@ -2,9 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { auth, provider } from '../firebase';
 import logo from '../image/logo.jpeg';
+import { actionTypes } from '../reducer';
+import { useStateValue } from '../StateProvider';
 
 
-function Login(props) {
+function Login() {
+
+    const [state, dispatch] = useStateValue();
 
     const signIn = () => {
         auth.signInWithPopup(provider)
@@ -13,8 +17,11 @@ function Login(props) {
                     name: result.user.displayName,
                     photo: result.user.photoURL
                 }
-                localStorage.setItem('user', JSON.stringify(newUser)); // saving logged in user data in local storage of browser to create session for not logging off user while page refresh.
-                props.setUser(newUser); // saving logged in user data in user state defined on app.js
+                // localStorage.setItem('user', JSON.stringify(newUser)); // saving logged in user data in local storage of browser to create session for not logging off user while page refresh.
+                dispatch({
+                    type: actionTypes.SET_USER,
+                    user: newUser
+                });
             })
             .catch((err) => {
                 alert(err.message)
@@ -25,7 +32,7 @@ function Login(props) {
         <Container>
             <Content>
                 <SlackImage src={logo} />
-                <h1>Sign in Programmer's Chatroom</h1>
+                <h1>Sign in to Programmer's Chatroom</h1>
                 <SigninButton onClick={() => signIn()}>
                     Signin with Google
                 </SigninButton>

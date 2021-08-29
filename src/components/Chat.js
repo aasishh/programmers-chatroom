@@ -6,8 +6,11 @@ import ChatMessage from './ChatMessage';
 import db from '../firebase';
 import { useParams } from 'react-router-dom';
 import firebase from 'firebase';
+import { useStateValue } from '../StateProvider';
 
-function Chat({ user, rooms }) {
+function Chat({ rooms }) {
+
+    const [{user}] = useStateValue();
     
     // using useParams() method to get channelId link address define in Route path
     let { channelId } = useParams();

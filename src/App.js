@@ -8,11 +8,13 @@ import Sidebar from './components/Sidebar';
 import styled from 'styled-components';
 import db from './firebase';
 import { auth } from './firebase';
+import { useStateValue } from './StateProvider';
 
 function App() {
 
   const [rooms, setRooms] = useState([]);
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user'))); //getting local stored data from browser by replacing default useState(). this allows to save user info even get page is refreshed
+  const [state] = useStateValue();
+  //const [user, setUser] = useState(JSON.parse(localStorage.getItem('user'))); //getting local stored data from browser by replacing default useState(). this allows to save user info even get page is refreshed
   
   const [isMobileClicked, setIsMobileClicked] = useState(false);
 
@@ -24,7 +26,7 @@ function App() {
   const signOut = () => {
     auth.signOut().then(() => {
       localStorage.removeItem('user');
-      setUser(null);
+      // setUser(null);
     })
   }
 
@@ -52,24 +54,24 @@ function App() {
     <div className="App">
       <Router>
         {
-          !user ?
-            <Login setUser={setUser} />
+          !state.user ?
+            <Login />
             :
             <Container>
-              <Header user={user} signOut={signOut} toggleSidebar={toggleSidebar} />
+              <Header signOut={signOut} toggleSidebar={toggleSidebar} />
               <Main>
                 <SidebarWrapper>
-                  <Sidebar rooms={rooms} user={user} />
+                  <Sidebar rooms={rooms} />
                 </SidebarWrapper>
                 <MainContent>
                   <MobileSidebar isMobileClicked={isMobileClicked}>
-                    <Sidebar user={user} rooms={rooms} updateMobileClickedOnChat={updateMobileClickedOnChat}/>
+                    <Sidebar rooms={rooms} updateMobileClickedOnChat={updateMobileClickedOnChat}/>
                   </MobileSidebar>
                   <MobileSidebarBackground isMobileClicked={isMobileClicked} onClick={updateMobileClickedOnChat} />
                   <ChatContentContainer >
                     <Switch>
                       <Route path="/room/:channelId">
-                        <Chat user={user} rooms={rooms}/>
+                        <Chat rooms={rooms}/>
                       </Route>
                       <Route path="/">
                         <InitialText>                        
@@ -125,7 +127,7 @@ const MobileSidebarBackground = styled.aside`
 
   @media screen and (max-width: 760px) {
     position: absolute;
-    display: flex;
+    display: ${({ isMobileClicked }) => ( isMobileClicked ? 'flex' : 'none' )};
     width: 100%;
     height: 100%;
     transition: 0.25s ease-in-out;

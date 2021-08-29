@@ -6,8 +6,11 @@ import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import { sidebarItems } from '../data/SidebarData';
 import db from '../firebase';
 import { useHistory } from 'react-router-dom';
+import { useStateValue } from '../StateProvider';
 
 function Sidebar(props) {
+
+    const [{user}] = useStateValue();
 
     // using useHistory() method from react router dom to switch different channels programatically (like going bak or forward in the browser)
     const history = useHistory();
@@ -64,7 +67,7 @@ function Sidebar(props) {
                     </h2>
                     <h3>
                         <FiberManualRecordIcon />
-                        {props.user.name}
+                        {user?.name}
                     </h3>
                 </Name>
                 <NewMessage>
