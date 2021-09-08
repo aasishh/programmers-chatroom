@@ -17,7 +17,7 @@ function Login() {
                     name: result.user.displayName,
                     photo: result.user.photoURL
                 }
-                // localStorage.setItem('user', JSON.stringify(newUser)); // saving logged in user data in local storage of browser to create session for not logging off user while page refresh.
+                localStorage.setItem('user', JSON.stringify(newUser)); // saving logged in user data in local storage of browser to create session for not logging off user while page refresh.
                 dispatch({
                     type: actionTypes.SET_USER,
                     user: newUser

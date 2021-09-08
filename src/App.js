@@ -8,12 +8,13 @@ import Sidebar from './components/Sidebar';
 import styled from 'styled-components';
 import db from './firebase';
 import { auth } from './firebase';
+import { actionTypes } from './reducer';
 import { useStateValue } from './StateProvider';
 
 function App() {
 
   const [rooms, setRooms] = useState([]);
-  const [state] = useStateValue();
+  const [state, dispatch] = useStateValue();
   //const [user, setUser] = useState(JSON.parse(localStorage.getItem('user'))); //getting local stored data from browser by replacing default useState(). this allows to save user info even get page is refreshed
   
   const [isMobileClicked, setIsMobileClicked] = useState(false);
@@ -26,6 +27,10 @@ function App() {
   const signOut = () => {
     auth.signOut().then(() => {
       localStorage.removeItem('user');
+      dispatch({
+        type: actionTypes.SET_USER,
+        user: null
+    });
       // setUser(null);
     })
   }
