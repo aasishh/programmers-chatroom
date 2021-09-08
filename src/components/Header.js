@@ -34,7 +34,7 @@ function Header({ signOut, toggleSidebar }) {
                     {user?.name}
                 </Name>
                 <UserImage onClick={signOut}>
-                    <img src={user.photo ? user.photo : "https://i.imgur.com/6VBx3io.png"} alt="" />
+                    <img src={user?.photo ? user.photo : "https://i.imgur.com/6VBx3io.png"} alt="" />
                 </UserImage>
             </UserContainer>
         </Container>
@@ -151,7 +151,6 @@ const UserContainer = styled.div`
     padding-right: 1.25em;
     padding-left: 1em;
    
-
     @media screen and (max-width: 760px) {
         
     }

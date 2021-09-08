@@ -10,17 +10,23 @@ import db from './firebase';
 import { auth } from './firebase';
 import { actionTypes } from './reducer';
 import { useStateValue } from './StateProvider';
+import VerticalSplitIcon from '@material-ui/icons/VerticalSplit';
 
 function App() {
 
   const [rooms, setRooms] = useState([]);
   const [state, dispatch] = useStateValue();
-  //const [user, setUser] = useState(JSON.parse(localStorage.getItem('user'))); //getting local stored data from browser by replacing default useState(). this allows to save user info even get page is refreshed
+  
+  const loginUser = JSON.parse(localStorage.getItem('user')); //getting local stored data from browser. this allows to save user info even when page is refreshed
   
   const [isMobileClicked, setIsMobileClicked] = useState(false);
 
   const toggleSidebar = () => {
     setIsMobileClicked(!isMobileClicked);
+  }
+
+  const updateMobileClickedOnChat = () => {
+    setIsMobileClicked(false);
   }
 
   // on triggred signOut() function will erase user data saved on local storage of browser 
@@ -31,7 +37,6 @@ function App() {
         type: actionTypes.SET_USER,
         user: null
     });
-      // setUser(null);
     })
   }
 
@@ -47,19 +52,24 @@ function App() {
       })
   }
 
+   
+
   useEffect(() => {
     getChannels();
-  }, [])
 
-  const updateMobileClickedOnChat = () => {
-    setIsMobileClicked(false);
-  }
+    dispatch({
+      type: actionTypes.SET_USER,
+      user: loginUser
+    }); 
+  
+  }, [])
+ 
 
   return (
     <div className="App">
       <Router>
         {
-          !state.user ?
+            !loginUser?
             <Login />
             :
             <Container>
@@ -79,8 +89,8 @@ function App() {
                         <Chat rooms={rooms}/>
                       </Route>
                       <Route path="/">
-                        <InitialText>                        
-                          Please select or create new channel
+                        <InitialText >                        
+                          <span>Please click on <VerticalSplitIcon /> icon to open sidebar then select or create new channel </span>
                         </InitialText>
                       </Route>
                     </Switch>
@@ -132,12 +142,12 @@ const MobileSidebarBackground = styled.aside`
 
   @media screen and (max-width: 760px) {
     position: absolute;
+    transition: 0.25s ease-in-out;
     display: ${({ isMobileClicked }) => ( isMobileClicked ? 'flex' : 'none' )};
+    opacity: ${({ isMobileClicked }) => ( isMobileClicked ? '0.3' : '0' )};
     width: 100%;
     height: 100%;
-    transition: 0.25s ease-in-out;
     background: black;
-    opacity: ${({ isMobileClicked }) => ( isMobileClicked ? '0.3' : '0' )};
     z-index: 100;
     border-radius: 15px;
   }
@@ -174,6 +184,27 @@ const InitialText = styled.div`
   align-items: center;
   background: #e8e9ed;
   border-radius: 15px;
+  span {
+    display: none;
+  }
+  ::after { 
+    content: "Please select or create new channel";
+  }
   
-  
+  @media screen and (max-width: 760px) {
+    ::after { 
+      display: none;
+    }
+    
+    span {
+      display: inline-block;
+      width: 80%;
+      line-height: 23px;
+      text-align: center;
+    }
+
+    .MuiSvgIcon-root {
+      vertical-align: -7px;
+    }
+  }
 `
